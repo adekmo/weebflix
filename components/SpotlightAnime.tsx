@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { Badge } from './ui/badge';
+import Link from 'next/link';
 
 type Episodes = {
   sub: number;
@@ -51,7 +52,7 @@ const SpotlightAnime = () => {
       ) : (
         <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {spot.map((s) => (
-            <div key={s.id} className='group relative overflow-hidden rounded-xl bg-card border border-border shadow-sm hover:shadow-md transition-shadow'>
+            <Link href={`/anime/${s.id}`} key={s.id} className='group relative overflow-hidden rounded-xl bg-card border border-border shadow-sm hover:shadow-md transition-shadow'>
               <div className="aspect-[2/3] w-full overflow-hidden">
                 <img
                   src={s.poster}
@@ -67,7 +68,7 @@ const SpotlightAnime = () => {
                 </p>
               </div>
               <div className="absolute left-2 top-2 rounded-md">
-                <Badge>
+                <Badge className={`bg-gradient-to-r from-blue-500 to-cyan-500 text-white`}>
                   {s.episodes.sub} Sub | {s.episodes.dub} Dub
                 </Badge>
               </div>
@@ -81,7 +82,7 @@ const SpotlightAnime = () => {
                   </span>
                 ))}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}
