@@ -4,6 +4,7 @@ import DetailAnimeCharVoice from '@/components/DetailAnimeCharVoice';
 import DetailAnimeHeader from '@/components/DetailAnimeHeader';
 import DetailAnimeMoreInfo from '@/components/DetailAnimeMoreInfo';
 import DetailAnimePromVideo from '@/components/DetailAnimePromVideo';
+import EpsiodesLists from '@/components/EpsiodesLists';
 import { AnimeDetail } from '@/types/detail';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
@@ -36,6 +37,7 @@ const DetailAnimePage = () => {
     <div className="max-w-6xl mx-auto p-6 space-y-8">
       {/* HEADER */}
       <DetailAnimeHeader anime={anime} />
+      <EpsiodesLists animeId={id} />
 
       {/* PROMOTIONAL VIDEOS */}
       <DetailAnimePromVideo videos={anime.info.promotionalVideos} />

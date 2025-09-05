@@ -10,33 +10,32 @@ export type AnimeDetail = {
         rating: string;
         quality: string;
     };
+    promotionalVideos: {
+        title: string;
+        source: string;
+        thumbnail: string;
+    }[];
+    charactersVoiceActors: {
+        character: {
+        id: string;
+        poster: string;
+        name: string;
+        cast: string;
+        };
+        voiceActor: {
+        id: string;
+        poster: string;
+        name: string;
+        cast: string;
+        };
+    }[];
   };
-  
   episodes: {
     sub: number;
     dub: number;
     type: string;
     duration: string;
   };
-  promotionalVideos: {
-    title: string;
-    source: string;
-    thumbnail: string;
-  }[];
-  charactersVoiceActors: {
-    character: {
-      id: string;
-      poster: string;
-      name: string;
-      cast: string;
-    };
-    voiceActor: {
-      id: string;
-      poster: string;
-      name: string;
-      cast: string;
-    };
-  }[];
   moreInfo: {
     japanese: string;
     synonyms: string;
