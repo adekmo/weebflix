@@ -1,6 +1,7 @@
 "use client";
 
 import { EpisodeResponse } from "@/types/episode";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const EpsiodesLists = ({ animeId }: { animeId: string }) => {
@@ -15,7 +16,7 @@ const EpsiodesLists = ({ animeId }: { animeId: string }) => {
         try {
             const res = await fetch(`/api/home/${animeId}/episodes`);
             const data = await res.json();
-            // console.log('data', data);
+            // console.log('data', animeId);
             
             setEpisodes(data.data || []);
         } catch (err) {
@@ -47,8 +48,11 @@ const EpsiodesLists = ({ animeId }: { animeId: string }) => {
       </h2>
       <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
         {paginatedEpisodes.map((ep) => (
+            <Link 
+                key={ep.episodeId} 
+                href={`/anime/${animeId}/episodes/${ep.number}`} 
+            >
           <div
-            key={ep.episodeId}
             className="border rounded-md p-3 bg-card hover:bg-accent/30 transition cursor-pointer"
           >
             <p className="font-semibold">Episode {ep.number}</p>
@@ -59,6 +63,7 @@ const EpsiodesLists = ({ animeId }: { animeId: string }) => {
               </span>
             )}
           </div>
+          </Link>
         ))}
       </div>
 
