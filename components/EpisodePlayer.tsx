@@ -59,7 +59,7 @@ export default function EpisodePlayer({ animeId, epNumber }: { animeId: string; 
           });
         }
       }
-    }
+    }
 
     fetchStream();
   }, [animeId, epNumber]);
