@@ -1,10 +1,17 @@
-import CategoryNav from "@/components/CategoryNav"
+import NavList from "@/components/NavList"
 
 const CategoryIndexPage = () => {
   return (
     <main className="p-6">
       <h1 className="text-2xl font-bold mb-6">Browse by Category</h1>
-      <CategoryNav />
+      <NavList type="category" items={[
+          { key: "tv", label: "TV Series", icon: "📺" },
+          { key: "movie", label: "Movies", icon: "🎬" },
+          { key: "ova", label: "OVA", icon: "📀" },
+          { key: "ona", label: "ONA", icon: "💻" },
+          { key: "special", label: "Specials", icon: "⭐" },
+        ]}
+      />
       <p className="text-gray-600">Please select a category above 👆</p>
     </main>
   )

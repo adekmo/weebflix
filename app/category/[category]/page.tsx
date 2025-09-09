@@ -1,5 +1,5 @@
 import AnimeList from "@/components/AnimeList";
-import CategoryNav from "@/components/CategoryNav";
+import NavList from "@/components/NavList";
 
 const CategoryPage = async ({ params }: { params: Promise<{ category: string }> }) => {
     
@@ -8,7 +8,14 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
   return (
     <main className="p-6">
       <h1 className="text-2xl font-bold mb-6 capitalize">Categories Anime</h1>
-      <CategoryNav />
+      <NavList type="category" items={[
+          { key: "tv", label: "TV Series", icon: "📺" },
+          { key: "movie", label: "Movies", icon: "🎬" },
+          { key: "ova", label: "OVA", icon: "📀" },
+          { key: "ona", label: "ONA", icon: "💻" },
+          { key: "special", label: "Specials", icon: "⭐" },
+        ]}
+      />
       <AnimeList type="category" category={category} />
     </main>
   )

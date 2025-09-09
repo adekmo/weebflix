@@ -1,11 +1,10 @@
-import GenreNav from '@/components/GenreNav'
-import React from 'react'
+import NavList from '@/components/NavList'
 
 const GenreIndex = () => {
   return (
     <main className="p-6">
       <h1 className="text-2xl font-bold mb-6">Browse by Genre</h1>
-      <GenreNav />
+      <NavList type='genre' fetchUrl="/api/genre" />
       <p className="text-gray-600">Please select a genre above 👆</p>
     </main>
   )

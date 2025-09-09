@@ -1,5 +1,6 @@
 import { AnimeDetail } from '@/types/detail';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
   anime: AnimeDetail;
@@ -31,7 +32,25 @@ const DetailAnimeHeader = ({anime}: Props) => {
               <strong>Score:</strong> {anime.moreInfo?.malscore}
             </p>
             <p>
-              <strong>Studios:</strong> {anime.moreInfo?.studios}
+              <strong>Studio:</strong>{" "} {anime.moreInfo.studios}
+
+              {" | "}
+              <strong>Producers:</strong>{" "}
+              {anime.moreInfo?.producers?.length ? (
+                anime.moreInfo.producers.map((producer: string) => (
+                  <Link
+                    key={producer}
+                    href={`/producer/${encodeURIComponent(
+                      producer.toLowerCase().replace(/\s+/g, "-")
+                    )}`}
+                    className="text-blue-600 hover:underline mr-2"
+                  >
+                    {producer}
+                  </Link>
+                ))
+              ) : (
+                <span>-</span>
+              )}
             </p>
           </div>
         </div>

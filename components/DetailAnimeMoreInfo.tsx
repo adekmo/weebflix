@@ -22,9 +22,9 @@ const DetailAnimeMoreInfo = ({anime}: Props) => {
           <li>
             <strong>Premiered:</strong> {anime.moreInfo?.premiered}
           </li>
-          <li>
+          {/* <li>
             <strong>Producers:</strong> {anime.moreInfo?.producers?.join(", ")}
-          </li>
+          </li> */}
         </ul>
       </section>
   )
