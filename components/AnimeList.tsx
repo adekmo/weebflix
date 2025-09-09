@@ -15,11 +15,13 @@ type Anime = {
 };
 
 type Props = {
-  category: string;
+  category?: string;
+  genre?: string;
+  type: "category" | "genre";
 };
 
 
-const AnimeList = ({ category }: Props) => {
+const AnimeList = ({ category, genre, type }: Props) => {
     const [animes, setAnimes] = useState<Anime[]>([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
@@ -31,7 +33,12 @@ const AnimeList = ({ category }: Props) => {
         setLoading(true);
         setError(null);
         try {
-            const res = await fetch(`/api/category/${category}?page=${page}`);
+            const endpoint =
+              type === "category"
+                ? `/api/category/${category}?page=${page}`
+                : `/api/genre/${genre}?page=${page}`;
+
+            const res = await fetch(endpoint);
             if (!res.ok) throw new Error("Failed to fetch category");
 
             // "genres": [...],
@@ -53,10 +60,12 @@ const AnimeList = ({ category }: Props) => {
         }
         }
         fetchData();
-    }, [category, page]);
+    }, [category, genre, page, type]);
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4 capitalize">{category} Anime</h1>
+      <h1 className="text-2xl font-bold mb-4 capitalize">
+        {type === "category" ? `${category} Anime` : `${genre} Anime`}
+      </h1>
 
       {loading ? (
         <p>Loading...</p>

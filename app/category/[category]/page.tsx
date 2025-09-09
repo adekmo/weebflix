@@ -7,9 +7,9 @@ const CategoryPage = async ({ params }: { params: Promise<{ category: string }> 
     
   return (
     <main className="p-6">
-      <h1 className="text-2xl font-bold mb-6 capitalize">{category} Anime</h1>
+      <h1 className="text-2xl font-bold mb-6 capitalize">Categories Anime</h1>
       <CategoryNav />
-      <AnimeList category={category} />
+      <AnimeList type="category" category={category} />
     </main>
   )
 }
