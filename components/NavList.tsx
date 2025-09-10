@@ -10,7 +10,7 @@ type NavItem = {
 };
 
 type NavListProps = {
-  type: "category" | "genre" | "producer";
+  type: "category" | "genre" | "producer" | "azlist";
   items?: NavItem[]; // static items (category, producer)
   fetchUrl?: string; // only for genre (dynamic)
 };
