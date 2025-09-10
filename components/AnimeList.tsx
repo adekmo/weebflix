@@ -22,16 +22,20 @@ type Props = {
   genre?: string;
   producer?: string;
   letter?: string;
-  type: "category" | "genre" | "producer" | "azlist";
+  query?: string;
+  type: "category" | "genre" | "producer" | "azlist" | "search";
 };
 
 
-const AnimeList = ({ category, genre, producer, letter, type }: Props) => {
+const AnimeList = ({ category, genre, producer, letter, query, type }: Props) => {
     const [animes, setAnimes] = useState<Anime[]>([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [error, setError] = useState<string | null>(null);
+
+    const decodedQuery = query ? decodeURIComponent(query) : "";
+
 
     useEffect(() => {
         async function fetchData() {
@@ -45,7 +49,9 @@ const AnimeList = ({ category, genre, producer, letter, type }: Props) => {
                 ? `/api/genre/${genre}?page=${page}`
                 : type === "producer"
                 ? `/api/producer/${producer}?page=${page}`
-                : `/api/azlist/${letter}?page=${page}`;
+                : type === "azlist"
+                ? `/api/azlist/${letter}?page=${page}`
+                : `/api/search?q=${query}&page=${page}`;
 
             const res = await fetch(endpoint);
             if (!res.ok) throw new Error("Failed to fetch category");
@@ -56,6 +62,7 @@ const AnimeList = ({ category, genre, producer, letter, type }: Props) => {
             // "totalPages": 122,
             // "hasNextPage": true,
             // "currentPage": 1
+            
 
             const data = await res.json();
             const innerData = data.data?.data;
@@ -69,11 +76,36 @@ const AnimeList = ({ category, genre, producer, letter, type }: Props) => {
         }
         }
         fetchData();
-    }, [category, genre, producer, page, type]);
+    }, [category, genre, producer, letter, query, page, type]);
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4 capitalize">
-        {type === "category" ? `${category} Anime` : type === "genre" ? `${genre} Anime` : type === "producer" ? `Anime Productions by ${producer}` : `Anime List by Letter ${letter}`}
+        {type === "category" ? (
+          <>
+            <span className="text-blue-500">{category}</span>
+            {" "} Anime
+          </>
+        ) : type === "genre" ? (
+         <>
+            <span className="text-blue-500">{genre}</span>
+            {" "} Anime
+          </>
+        ) : type === "producer" ? (
+          <>
+            Anime productions by:{" "}
+            <span className="text-blue-500">{producer}</span>
+          </>
+        ) : type === "azlist" ? (
+          <>
+            Anime list by letter:{" "}
+            <span className="text-blue-500">{letter}</span>
+          </>
+        ) : (
+          <>
+            Search Results for:{" "}
+            <span className="text-blue-500">{decodedQuery}</span>
+          </>
+        )}
       </h1>
 
       {loading ? (
