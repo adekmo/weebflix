@@ -3,11 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { producerName: string } }
+  { params }: { params: Promise<{ producerName: string }> }
 ) {
   try {
     const page = req.nextUrl.searchParams.get("page") || "1";
-    const { producerName } = params;
+    const { producerName } = await params;
 
     const path = `anime/producer/${producerName}?page=${page}`;
     const data = await AnimeApi(path);

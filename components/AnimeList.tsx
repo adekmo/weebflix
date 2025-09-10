@@ -2,6 +2,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import SchedulePagination from "@/components/SchedulePagination";
+import { HoverCardArrow, HoverCardContent, HoverCardPortal, HoverCardTrigger } from "@radix-ui/react-hover-card";
+import * as HoverCard from "@radix-ui/react-hover-card";
+import AnimeQtip from "./AnimeQtip";
 
 type Anime = {
   id: string;
@@ -81,31 +84,44 @@ const AnimeList = ({ category, genre, producer, letter, type }: Props) => {
         <p>No anime found.</p>
       ) : (
         <>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {animes.map((anime) => (
-              <Link
-                key={anime.id}
-                href={`/anime/${anime.id}`}
-                className="border rounded-lg bg-white shadow hover:shadow-md"
-              >
-                <img
-                  src={anime.poster}
-                  alt={anime.name}
-                  className="w-full h-60 object-cover rounded-t-lg"
-                />
-                <div className="p-2">
-                  <h2 className="font-semibold text-sm truncate">{anime.name}</h2>
-                  <p className="text-xs text-gray-500">{anime.jname}</p>
-                  <p className="text-xs text-gray-600">
-                    {anime.duration} • {anime.type}
-                  </p>
-                  <p className="text-xs text-blue-600">
-                    Episodes: Sub {anime.episodes.sub || 0} | Dub {anime.episodes.dub || 0}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {animes.map((anime) => (
+                <HoverCard.Root key={anime.id} openDelay={200} closeDelay={100}>
+                  <HoverCard.Trigger asChild>
+                    <Link
+                      href={`/anime/${anime.id}`}
+                      className="border rounded-lg bg-white shadow hover:shadow-md"
+                    >
+                      <img
+                        src={anime.poster}
+                        alt={anime.name}
+                        className="w-full h-60 object-cover rounded-t-lg"
+                      />
+                      <div className="p-2">
+                        <h2 className="font-semibold text-sm truncate">{anime.name}</h2>
+                        <p className="text-xs text-gray-500">{anime.jname}</p>
+                        <p className="text-xs text-gray-600">
+                          {anime.duration} • {anime.type}
+                        </p>
+                        <p className="text-xs text-blue-600">
+                          Episodes: Sub {anime.episodes.sub || 0} | Dub {anime.episodes.dub || 0}
+                        </p>
+                      </div>
+                    </Link>
+                  </HoverCard.Trigger>
+                  <HoverCard.Portal>
+                    <HoverCard.Content
+                      side="right"
+                      sideOffset={10}
+                      className="z-50 bg-white rounded-lg shadow-xl border p-3 animate-in fade-in slide-in-from-left-1"
+                    >
+                      <AnimeQtip id={anime.id} />
+                      <HoverCardArrow className="fill-white" />
+                    </HoverCard.Content>
+                  </HoverCard.Portal>
+                </HoverCard.Root>
+                ))}
+              </div>
 
           {totalPages > 1 && (
             <SchedulePagination
