@@ -14,7 +14,7 @@ const QuickNav = () => {
             <Link
               key={n.to}
               href={n.to}
-              className="group flex items-center justify-between rounded-xl border bg-card p-4 transition hover:bg-accent"
+              className="group flex text-neon items-center justify-between rounded-xl bg-card p-4 transition hover:bg-accent border border-[hsl(var(--neon))]"
             >
               <div className="flex items-center gap-3">
                 <span className="text-xl">{n.emoji}</span>

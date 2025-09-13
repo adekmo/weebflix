@@ -13,7 +13,7 @@ const ProducerPage = async ({ params }: { params: Promise<{ producerName: string
     ]
   return (
     <main className="p-6">
-      <h1 className="text-2xl font-bold mb-6 capitalize">Producer's Anime</h1>
+      <h1 className="text-2xl font-bold mb-6 text-neon capitalize">Producer's Anime</h1>
       <NavList type='producer' items={producer} />
       <AnimeList type="producer" producer={producerName} />
     </main>

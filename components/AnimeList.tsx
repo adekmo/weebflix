@@ -5,6 +5,9 @@ import SchedulePagination from "@/components/SchedulePagination";
 import { HoverCardArrow, HoverCardContent, HoverCardPortal, HoverCardTrigger } from "@radix-ui/react-hover-card";
 import * as HoverCard from "@radix-ui/react-hover-card";
 import AnimeQtip from "./AnimeQtip";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { Badge } from "./ui/badge";
 
 type Anime = {
   id: string;
@@ -82,28 +85,28 @@ const AnimeList = ({ category, genre, producer, letter, query, type }: Props) =>
       <h1 className="text-2xl font-bold mb-4 capitalize">
         {type === "category" ? (
           <>
-            <span className="text-blue-500">{category}</span>
+            <span className="text-neon">{category}</span>
             {" "} Anime
           </>
         ) : type === "genre" ? (
          <>
-            <span className="text-blue-500">{genre}</span>
+            <span className="text-neon">{genre}</span>
             {" "} Anime
           </>
         ) : type === "producer" ? (
           <>
             Anime productions by:{" "}
-            <span className="text-blue-500">{producer}</span>
+            <span className="text-neon">{producer}</span>
           </>
         ) : type === "azlist" ? (
           <>
             Anime list by letter:{" "}
-            <span className="text-blue-500">{letter}</span>
+            <span className="text-neon">{letter}</span>
           </>
         ) : (
           <>
             Search Results for:{" "}
-            <span className="text-blue-500">{decodedQuery}</span>
+            <span className="text-neon">{decodedQuery}</span>
           </>
         )}
       </h1>
@@ -122,22 +125,30 @@ const AnimeList = ({ category, genre, producer, letter, query, type }: Props) =>
                   <HoverCard.Trigger asChild>
                     <Link
                       href={`/anime/${anime.id}`}
-                      className="border rounded-lg bg-white shadow hover:shadow-md"
+                      className={cn(
+                                  "group relative overflow-hidden rounded-xl border bg-card transition-transform",
+                                  "hover:-translate-y-1 hover:shadow-2xl",
+                                )}
                     >
-                      <img
+                      <Image
                         src={anime.poster}
                         alt={anime.name}
-                        className="w-full h-60 object-cover rounded-t-lg"
+                        width={200}
+                        height={200}
+                        className='aspect-[3/4] w-full object-cover transition-transform duration-300 group-hover:scale-105'
                       />
-                      <div className="p-2">
-                        <h2 className="font-semibold text-sm truncate">{anime.name}</h2>
-                        <p className="text-xs text-gray-500">{anime.jname}</p>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                      <div className="px-3 py-5 backdrop-blur-sm bg-black/30 flex flex-col gap-1">
+                        <h3 className="line-clamp-1 text-sm font-semibold text-white drop-shadow-lg">{anime.name}</h3>
+                        <p className="mt-1 text-xs text-gray-200/90 line-clamp-2 drop-shadow">
+                          {anime.jname}
+                        </p>
                         <p className="text-xs text-gray-600">
-                          {anime.duration} • {anime.type}
+                          Duratioan <span className="text-neon">{anime.duration}</span> • Type <span className="text-neon">{anime.type}</span>
                         </p>
-                        <p className="text-xs text-blue-600">
+                        <Badge variant="destructive" className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white backdrop-blur hover:bg-white/20">
                           Episodes: Sub {anime.episodes.sub || 0} | Dub {anime.episodes.dub || 0}
-                        </p>
+                        </Badge>
                       </div>
                     </Link>
                   </HoverCard.Trigger>

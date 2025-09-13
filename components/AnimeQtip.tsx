@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Badge } from "./ui/badge";
 
 type QtipAnime = {
   id: string;
@@ -49,8 +50,8 @@ const AnimeQtip = ({ id }: { id: string }) => {
   }
   if (!anime) return <p className="text-xs text-red-500">No info available</p>;
   return (
-    <div className="text-sm space-y-2 max-w-xs">
-      <h3 className="font-bold text-lg">{anime.name}</h3>
+    <div className="text-sm space-y-2 p-2 max-w-xs bg-gradient-to-tr from-[#0D1117] to-[#111827]">
+      <h3 className="font-bold text-neon text-lg">{anime.name}</h3>
       <p className="text-xs text-gray-500">{anime.jname}</p>
       <p className="text-gray-600 line-clamp-3">{anime.description}</p>
 
@@ -64,12 +65,9 @@ const AnimeQtip = ({ id }: { id: string }) => {
 
       <div className="flex flex-wrap gap-1 mt-2">
         {anime.genres.map((g) => (
-          <span
-            key={g}
-            className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs"
-          >
-            {g}
-          </span>
+          <Badge key={g} variant="neon" className="rounded-full border-0 px-3 py-1">
+              {g}
+          </Badge>
         ))}
       </div>
     </div>

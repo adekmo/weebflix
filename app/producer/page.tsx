@@ -10,7 +10,7 @@ const ProducerIndex = () => {
   ]
   return (
     <main className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Browse by Producer</h1>
+      <h1 className="text-2xl font-bold text-neon mb-6">Browse by Producer</h1>
       <NavList type='producer' items={producer} />
       <p className="text-gray-600">Please select a Producers above 👆</p>
     </main>

@@ -59,7 +59,7 @@ const SearchBar = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search anime..."
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 text-neon border border-[hsl(var(--neon))] rounded-lg focus:outline-none focus:ring-2 focus:ring-[hsl(var(--neon))]"
         />
       </form>
 

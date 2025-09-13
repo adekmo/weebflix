@@ -23,41 +23,41 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-5 text-sm">
           <Link
-            href="/"
+            href="/category"
             className={
-              pathname === "/"
-                ? "text-primary font-semibold"
-                : "text-muted-foreground hover:text-foreground"
+              pathname === "/category"
+                ? "text-neon font-semibold hover:text-foreground"
+                : "text-primary "
             }
           >
             Category
           </Link>
           <Link
-            href="/"
+            href="/genre"
             className={
-              pathname === "/"
-                ? "text-primary font-semibold"
-                : "text-muted-foreground hover:text-foreground"
+              pathname === "/genre"
+                ? "text-neon font-semibold hover:text-foreground"
+                : "text-primary"
             }
           >
             Genre
           </Link>
           <Link
-            href="/"
+            href="/producer"
             className={
-              pathname === "/"
-                ? "text-primary font-semibold"
-                : "text-muted-foreground hover:text-foreground"
+              pathname === "/producer"
+                ? "text-neon font-semibold hover:text-foreground"
+                : "text-primary"
             }
           >
             Producer
           </Link>
           <Link
-            href="/"
+            href="/azlist"
             className={
-              pathname === "/"
-                ? "text-primary font-semibold"
-                : "text-muted-foreground hover:text-foreground"
+              pathname === "/azlist"
+                ? "text-neon font-semibold hover:text-foreground"
+                : "text-primary"
             }
           >
             A-Z List

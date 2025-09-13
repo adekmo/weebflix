@@ -11,7 +11,7 @@ const AZListPage = async ( {params}: { params: Promise<{letter: string}>}) => {
   }));
   return (
     <main className="p-6">
-      <h1 className="text-2xl font-bold mb-6 capitalize">Anime A-Z</h1>
+      <h1 className="text-2xl font-bold mb-6 text-neon capitalize">Anime A-Z</h1>
       <NavList type="azlist" items={letters} />
       <AnimeList type="azlist" letter={letter} />
     </main>

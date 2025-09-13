@@ -10,12 +10,12 @@ const CategoryIndexPage = () => {
     { key: "special", label: "Specials", icon: "⭐" },
   ];
   return (
-    <main className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Browse by Category</h1>
+    <section className="container py-8">
+      <h1 className="text-2xl font-bold text-neon mb-6">Browse by Category</h1>
       <NavList type="category" items={categories}
       />
       <p className="text-gray-600">Please select a category above 👆</p>
-    </main>
+    </section>
   )
 }
 

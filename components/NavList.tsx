@@ -52,9 +52,7 @@ const NavList = ({ type, items, fetchUrl }: NavListProps) => {
      if (loading) return <p>Loading {type}...</p>;
   return (
     <div
-      className={`flex ${
-        type === "genre" ? "overflow-x-auto scrollbar-thin" : "flex-wrap"
-      } gap-3 mb-6`}
+      className={`flex flex-wrap gap-3 mb-6`}
     >
       {data.map((item) => (
         <Link
@@ -62,8 +60,8 @@ const NavList = ({ type, items, fetchUrl }: NavListProps) => {
           href={`/${type}/${item.key}`}
           className={`flex items-center gap-2 whitespace-nowrap px-4 py-2 rounded-lg border shadow-sm transition ${
             active === item.key
-              ? "bg-blue-600 text-white border-blue-600"
-              : "bg-white hover:bg-gray-100 border-gray-300"
+              ? "bg-[hsl(var(--neon))] text-[hsl(var(--neon-foreground))] shadow-[0_0_0_1px_rgba(6,182,212,0.55)_inset,0_0_12px_rgba(6,182,212,0.35),0_0_28px_rgba(6,182,212,0.25)] hover:shadow-[0_0_0_1px_rgba(6,182,212,0.7)_inset,0_0_16px_rgba(6,182,212,0.5),0_0_40px_rgba(6,182,212,0.35)] hover:bg-[hsl(var(--neon))]/90"
+              : "bg-card text-primary hover:bg-[hsl(var(--neon))] border-[hsl(var(--neon))]/90"
           }`}
         >
           {item.icon && <span>{item.icon}</span>}
