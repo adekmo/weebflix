@@ -3,6 +3,9 @@
 import React, { useEffect, useState } from 'react'
 import { Badge } from './ui/badge';
 import Link from 'next/link';
+import { Button } from './ui/button';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 type Episodes = {
   sub: number;
@@ -22,6 +25,14 @@ type Spot = {
 const SpotlightAnime = () => {
     const [spot, setSpot] = useState<Spot[]>([]);
     const [loading, setLoading] = useState(true);
+
+    const categories = [
+      { key: "tv", label: "TV", icon: "📺" },
+      { key: "movie", label: "Movie", icon: "🎬" },
+      { key: "ova", label: "OVA", icon: "💿" },
+      { key: "ona", label: "ONA", icon: "🧭" },
+      { key: "special", label: "Special", icon: "✨" },
+    ];
 
     useEffect(() => {
             const fetchSpot = async () => {
@@ -45,42 +56,44 @@ const SpotlightAnime = () => {
     
          if (loading) return <p className="text-center p-4">Loading...</p>;
   return (
-    <section>
-      <h2 className="text-xl font-semibold mb-3">🔥 Spotlight Animes</h2>
+    <section className='container py-8'>
+      <div className='mb-4 flex items-center justify-between'>
+        <h2 className="text-xl font-bold">Popular Anime</h2>
+        <div className="hidden gap-2 md:flex">
+            {categories.slice(0, 5).map((c) => (
+              <Button key={c.key} variant="neon" size="sm" className="rounded-full px-3 cursor-pointer">
+                <span className="mr-1">{c.icon}</span>
+                {c.label}
+              </Button>
+            ))}
+          </div>
+      </div>
       {spot.length === 0 ? (
         <p>Tidak ada data saat ini</p>
       ) : (
         <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {spot.map((s) => (
-            <Link href={`/anime/${s.id}`} key={s.id} className='group relative overflow-hidden rounded-xl bg-card border border-border shadow-sm hover:shadow-md transition-shadow'>
-              <div className="aspect-[2/3] w-full overflow-hidden">
-                <img
-                  src={s.poster}
-                  alt={s.name}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-3">
-                <h3 className="line-clamp-1 text-sm font-semibold">{s.name}</h3>
-                <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
+            <Link href={`/anime/${s.id}`} key={s.id} className={cn(
+            "group relative overflow-hidden rounded-xl border bg-card transition-transform",
+            "hover:-translate-y-1 hover:shadow-2xl",
+          )}>
+              <Image src={s.poster} alt={s.name} width={200} height={200} className='aspect-[3/4] w-full object-cover transition-transform duration-300 group-hover:scale-105' />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="p-3 backdrop-blur-sm bg-black/30">
+                <h3 className="line-clamp-1 text-sm font-semibold text-white drop-shadow-lg">{s.name}</h3>
+                <p className="mt-1 text-xs text-gray-200/90 line-clamp-2 drop-shadow">
                   {s.description}
                 </p>
+                {s.otherInfo.map((info, idx) => (
+                  <Badge key={idx} variant="destructive" className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white backdrop-blur hover:bg-white/20">
+                    {info}
+                  </Badge>
+                ))}
               </div>
               <div className="absolute left-2 top-2 rounded-md">
                 <Badge className={`bg-gradient-to-r from-blue-500 to-cyan-500 text-white`}>
                   {s.episodes.sub} Sub | {s.episodes.dub} Dub
                 </Badge>
-              </div>
-              <div className="mt-2 flex flex-wrap gap-2 text-xs text-gray-500">
-                {s.otherInfo.map((info, idx) => (
-                  <span
-                    key={idx}
-                    className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800"
-                  >
-                    {info}
-                  </span>
-                ))}
               </div>
             </Link>
           ))}

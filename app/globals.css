@@ -4,45 +4,52 @@
 
 /* === THEME VARIABLES === */
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  /* --background: 0 0% 100%; */
+  --background: 215 28% 9%;
+  --foreground: 210 40% 98%;
 
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --neon: 189 94% 43%; /* cyan */
+  --neon-foreground: 0 0% 100%; /* putih */
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
+    --card: 215 28% 12%; /* ~#111827 */
+    --card-foreground: 210 40% 98%;
 
-  --primary: 258 90% 60%;
-  --primary-foreground: 0 0% 100%;
+    --popover: 215 28% 12%;
+    --popover-foreground: 210 40% 98%;
 
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
+    --primary: 189 94% 43%; /* #06b6d4 */
+    --primary-foreground: 210 40% 98%;
 
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: 215 18% 16%;
+    --secondary-foreground: 210 40% 98%;
 
-  --accent: 260 100% 97%;
-  --accent-foreground: 258 36% 20%;
+    --muted: 215 18% 16%;
+    --muted-foreground: 215 20% 72%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+    --accent: 189 80% 16%;
+    --accent-foreground: 210 40% 98%;
 
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 258 90% 60%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-  --radius: 0.5rem;
+    --border: 215 18% 22%;
+    --input: 215 18% 22%;
+    --ring: 189 94% 43%;
 
-  /* Sidebar theme (from Builder) */
-  --sidebar-background: 0 0% 98%;
-  --sidebar-foreground: 240 5.3% 26.1%;
-  --sidebar-primary: 240 5.9% 10%;
-  --sidebar-primary-foreground: 0 0% 98%;
-  --sidebar-accent: 240 4.8% 95.9%;
-  --sidebar-accent-foreground: 240 5.9% 10%;
-  --sidebar-border: 220 13% 91%;
-  --sidebar-ring: 217.2 91.2% 59.8%;
+    --radius: 0.75rem;
+
+    --brand-1: 189 94% 54%;
+    --brand-2: 189 94% 43%;
+    --brand-3: 189 94% 35%;
+
+    --sidebar-background: 215 28% 9%;
+    --sidebar-foreground: 210 4.8% 95.9%;
+    --sidebar-primary: 189 94% 43%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 18% 16%;
+    --sidebar-accent-foreground: 210 4.8% 95.9%;
+    --sidebar-border: 215 18% 16%;
+    --sidebar-ring: 189 94% 43%;
 }
 
 /* === DARK MODE === */
@@ -93,7 +100,55 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+.text-gradient {
+    background-image: linear-gradient(90deg, hsl(var(--brand-1)) 0%, hsl(var(--brand-2)) 50%, hsl(var(--brand-3)) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* .glass {
+    @apply bg-background/60 backdrop-blur supports-[backdrop-filter]:bg-background/50;
+  } */
+
 /* Optional: border style for consistency */
 * {
   border-color: hsl(var(--border));
 }
+
+.anime-immersive-bg-light {
+    /* Cyberpunk black-blue base with cyan glows and subtle grid (also for light mode) */
+    background-image:
+      linear-gradient(180deg, rgba(2,6,12,0.55) 0%, rgba(2,6,12,0.72) 60%, rgba(2,6,12,0.85) 100%),
+      linear-gradient(rgba(6,182,212,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6,182,212,0.05) 1px, transparent 1px),
+      radial-gradient(900px 500px at 100% -10%, rgba(6,182,212,0.25) 0%, rgba(6,182,212,0) 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(6,182,212,0.18) 0%, rgba(6,182,212,0) 60%),
+      linear-gradient(135deg, #0D1117 0%, #111827 100%);
+    background-size: auto, 32px 32px, 32px 32px, auto, auto, auto;
+    background-repeat: no-repeat, repeat, repeat, no-repeat, no-repeat, no-repeat;
+    background-position: center;
+  }
+
+  .anime-immersive-bg-dark {
+    /* Cyberpunk black-blue base with cyan glows and subtle grid */
+    background-image:
+      /* dark veil for readability */
+      linear-gradient(180deg, rgba(2,6,12,0.55) 0%, rgba(2,6,12,0.72) 60%, rgba(2,6,12,0.85) 100%),
+      /* subtle cyan grid */
+      linear-gradient(rgba(6,182,212,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6,182,212,0.05) 1px, transparent 1px),
+      /* cyan glows */
+      radial-gradient(900px 500px at 100% -10%, rgba(6,182,212,0.25) 0%, rgba(6,182,212,0) 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(6,182,212,0.18) 0%, rgba(6,182,212,0) 60%),
+      /* base gradient */
+      linear-gradient(135deg, #0D1117 0%, #111827 100%);
+    background-size: auto, 32px 32px, 32px 32px, auto, auto, auto;
+    background-repeat: no-repeat, repeat, repeat, no-repeat, no-repeat, no-repeat;
+    background-position: center;
+  }
+
+  /* Neon cyan glow utility for interactive elements */
+  .neon-cyan-glow {
+    box-shadow: 0 0 0 1px rgba(6,182,212,0.6) inset, 0 0 12px rgba(6,182,212,0.35), 0 0 32px rgba(6,182,212,0.25);
+  }

@@ -76,7 +76,7 @@ const SearchBar = () => {
                 href={`/anime/${anime.id}`}
                 onClick={() => {
                   setSuggestions([]);
-                  setShowSuggestions(false); // ✅ hide saat klik item
+                  setShowSuggestions(false);
                 }}
                 className="flex items-center gap-3 p-3 hover:bg-gray-100 transition"
               >
