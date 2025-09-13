@@ -43,26 +43,35 @@ const EpsiodesLists = ({ animeId }: { animeId: string }) => {
     }
   return (
     <section className="mt-6">
-      <h2 className="text-xl font-semibold mb-3">
+      <h2 className="text-xl font-semibold text-neon mb-3">
         📺 Episodes ({episodes.totalEpisodes})
       </h2>
-      <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
         {paginatedEpisodes.map((ep) => (
-            <Link 
-                key={ep.episodeId} 
-                href={`/anime/${animeId}/episodes/${ep.number}`} 
-            >
-          <div
-            className="border rounded-md p-3 bg-card hover:bg-accent/30 transition cursor-pointer"
+          <Link 
+            key={ep.episodeId} 
+            href={`/anime/${animeId}/episodes/${ep.number}`}
           >
-            <p className="font-semibold">Episode {ep.number}</p>
-            <p className="text-sm text-muted-foreground">{ep.title}</p>
-            {ep.isFiller && (
-              <span className="inline-block mt-2 px-2 py-0.5 text-xs rounded bg-yellow-200 text-yellow-900">
+            <div
+              className="group relative overflow-hidden rounded-lg border bg-gradient-to-tr from-[#0D1117] to-[#111827] 
+                        hover:from-cyan-900/40 hover:to-sky-900/40 
+                        transition-all duration-300 p-4 cursor-pointer aspect-[5/2]"
+            >
+              {/* Episode Info */}
+              <h3 className="text-lg font-bold text-white group-hover:text-[hsl(var(--neon))] transition-colors">
+                Episode {ep.number}
+              </h3>
+              <p className="mt-1 text-sm text-gray-400 line-clamp-2">
+                {ep.title}
+              </p>
+
+              {/* Filler Badge */}
+              {ep.isFiller && (
+                <div className="absolute top-2 right-2 rounded-full bg-[hsl(var(--neon))] text-xs text-white px-3 py-1 shadow-lg">
                 Filler
-              </span>
-            )}
-          </div>
+              </div>
+              )}
+            </div>
           </Link>
         ))}
       </div>
@@ -71,17 +80,17 @@ const EpsiodesLists = ({ animeId }: { animeId: string }) => {
         <button
           disabled={currentPage === 1}
           onClick={() => setCurrentPage((p) => p - 1)}
-          className="px-3 py-1 rounded bg-primary text-black disabled:opacity-50 cursor-pointer"
+          className="px-3 py-1 rounded bg-[hsl(var(--neon))] text-[hsl(var(--neon-foreground))] disabled:opacity-50 cursor-pointer"
         >
           Prev
         </button>
-        <span>
+        <span className="text-neon">
           Page {currentPage} of {totalPages}
         </span>
         <button
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage((p) => p + 1)}
-          className="px-3 py-1 rounded bg-primary text-black disabled:opacity-50 cursor-pointer"
+          className="px-3 py-1 rounded bg-[hsl(var(--neon))] text-[hsl(var(--neon-foreground))] disabled:opacity-50 cursor-pointer"
         >
           Next
         </button>

@@ -8,23 +8,26 @@ type Props = {
 const DetailAnimeMoreInfo = ({anime}: Props) => {
   return (
     <section>
-        <h2 className="text-xl font-semibold mb-3">ℹ️ More Info</h2>
-        <ul className="space-y-1 text-sm">
-          <li>
-            <strong>Japanese:</strong> {anime.moreInfo?.japanese}
+        <h2 className="text-xl font-semibold text-neon mb-4 flex items-center gap-2">
+          <span>ℹ️</span> More Info
+        </h2>
+        <ul className="divide-y divide-[hsl(var(--border))] rounded-lg border border-[hsl(var(--border))] bg-card/40 backdrop-blur-sm overflow-hidden">
+          <li className="p-3 hover:bg-[hsl(var(--accent))]/30 transition">
+            <span className="font-semibold text-neon">Japanese:</span>{" "}
+            <span className="text-gray-300">{anime.moreInfo?.japanese}</span>
           </li>
-          <li>
-            <strong>Synonyms:</strong> {anime.moreInfo?.synonyms}
+          <li className="p-3 hover:bg-[hsl(var(--accent))]/30 transition">
+            <span className="font-semibold text-neon">Synonyms:</span>{" "}
+            <span className="text-gray-300">{anime.moreInfo?.synonyms}</span>
           </li>
-          <li>
-            <strong>Aired:</strong> {anime.moreInfo?.aired}
+          <li className="p-3 hover:bg-[hsl(var(--accent))]/30 transition">
+            <span className="font-semibold text-neon">Aired:</span>{" "}
+            <span className="text-gray-300">{anime.moreInfo?.aired}</span>
           </li>
-          <li>
-            <strong>Premiered:</strong> {anime.moreInfo?.premiered}
+          <li className="p-3 hover:bg-[hsl(var(--accent))]/30 transition">
+            <span className="font-semibold text-neon">Premiered:</span>{" "}
+            <span className="text-gray-300">{anime.moreInfo?.premiered}</span>
           </li>
-          {/* <li>
-            <strong>Producers:</strong> {anime.moreInfo?.producers?.join(", ")}
-          </li> */}
         </ul>
       </section>
   )

@@ -34,7 +34,7 @@ const DetailAnimePage = () => {
     if (loading) return <p className="p-4">Loading...</p>;
     if (!anime) return <p className="p-4">Anime not found.</p>;
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-8">
+    <div className="container max-w-6xl mx-auto p-6 space-y-8">
       {/* HEADER */}
       <DetailAnimeHeader anime={anime} />
       <EpsiodesLists animeId={id} />

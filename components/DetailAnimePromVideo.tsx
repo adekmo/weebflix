@@ -9,7 +9,7 @@ const DetailAnimePromVideo = ({videos}: Props) => {
 
   return (
     <section>
-        <h2 className="text-xl font-semibold mb-3">🎬 Promotional Videos</h2>
+        <h2 className="text-xl font-semibold text-neon mb-3">🎬 Promotional Videos</h2>
         <div className="grid gap-4 md:grid-cols-2">
           {videos.map((pv, idx) => (
             <div key={idx} className="border rounded-lg overflow-hidden">
