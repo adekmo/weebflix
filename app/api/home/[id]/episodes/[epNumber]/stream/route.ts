@@ -1,18 +1,15 @@
 import { AnimeApi } from "@/lib/api";
 import { NextRequest, NextResponse } from "next/server";
 
-// biarkan Next.js yang typing `params`
 export async function GET(
   req: NextRequest,
-  context: { params: { id: string; epNumber: string } }
+  context: { params: Promise<{ id: string; epNumber: string }> }
 ) {
-  try {
-    const { id, epNumber } = context.params;
+  const { id, epNumber } = await context.params;
 
+  try {
     const episodeId = `${id}?ep=${epNumber}`;
-    const path = `anime/episode-srcs?id=${encodeURIComponent(
-      episodeId
-    )}&server=hd-1&category=sub`;
+    const path = `anime/episode-srcs?id=${encodeURIComponent(episodeId)}&server=hd-1&category=sub`;
 
     console.log("HiAnime path →", path);
 
