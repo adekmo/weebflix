@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 import SearchBar from "./SearchBar";
 
 const Navbar = () => {
 
-    const { theme, setTheme } = useTheme();
+    // const { theme, setTheme } = useTheme();
     const router = useRouter();
     const pathname = usePathname();
     

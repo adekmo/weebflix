@@ -36,40 +36,40 @@ const SchedulePage = () => {
   const [date, setDate] = useState<string>(() => new Date().toISOString().split("T")[0]);
   const [page, setPage] = useState<number>(1);
 
-  const fetchSchedule = async () => {
+  useEffect(() => {
+    const fetchSchedule = async () => {
     setLoading(true);
     setError(null);
     setPage(1);
 
-    try {
-      let fetchedAnimes: ScheduledAnime[] = [];
+      try {
+        let fetchedAnimes: ScheduledAnime[] = [];
 
-      if (tab === "today") {
-        const res = await fetch(`/api/schedule?date=${date}`);
-        if (!res.ok) throw new Error("Failed to fetch schedule for today");
-        const data = await res.json();
-        fetchedAnimes = data.data?.scheduledAnimes || [];
-      } else { // tab === "week"
-        const dates = getWeekDates();
-        const results = await Promise.all(
-          dates.map(async (d) => {
-            const res = await fetch(`/api/schedule?date=${d}`);
-            return res.ok ? res.json() : { data: { scheduledAnimes: [] } };
-          })
-        );
-        fetchedAnimes = results.flatMap((r) => r.data?.scheduledAnimes || []);
-        fetchedAnimes.sort((a, b) => (a.airingTimestamp || 0) - (b.airingTimestamp || 0));
+        if (tab === "today") {
+          const res = await fetch(`/api/schedule?date=${date}`);
+          if (!res.ok) throw new Error("Failed to fetch schedule for today");
+          const data = await res.json();
+          fetchedAnimes = data.data?.scheduledAnimes || [];
+        } else { // tab === "week"
+          const dates = getWeekDates();
+          const results = await Promise.all(
+            dates.map(async (d) => {
+              const res = await fetch(`/api/schedule?date=${d}`);
+              return res.ok ? res.json() : { data: { scheduledAnimes: [] } };
+            })
+          );
+          fetchedAnimes = results.flatMap((r) => r.data?.scheduledAnimes || []);
+          fetchedAnimes.sort((a, b) => (a.airingTimestamp || 0) - (b.airingTimestamp || 0));
+        }
+        setAnimes(fetchedAnimes);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load schedule");
+      } finally {
+        setLoading(false);
       }
-      setAnimes(fetchedAnimes);
-    } catch (err) {
-      console.error(err);
-      setError("Failed to load schedule");
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
 
-  useEffect(() => {
     fetchSchedule();
   }, [tab, date]);
 

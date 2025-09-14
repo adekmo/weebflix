@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import SchedulePagination from "@/components/SchedulePagination";
-import { HoverCardArrow, HoverCardContent, HoverCardPortal, HoverCardTrigger } from "@radix-ui/react-hover-card";
+import { HoverCardArrow } from "@radix-ui/react-hover-card";
 import * as HoverCard from "@radix-ui/react-hover-card";
 import AnimeQtip from "./AnimeQtip";
 import { cn } from "@/lib/utils";

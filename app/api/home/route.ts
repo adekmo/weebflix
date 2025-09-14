@@ -10,6 +10,7 @@ export async function GET() {
     // console.log("RAW API:", data.data.spotlightAnimes);
     return NextResponse.json(data.data.spotlightAnimes || []);
   } catch (error) {
+    console.error("Error fetching anime detail:", error);
     return NextResponse.json({ error: "Failed to fetch data" }, { status: 500 });
   }
 }

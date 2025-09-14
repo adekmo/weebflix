@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 type Episodes = {
   sub: number;
@@ -42,12 +43,14 @@ const Hero = () => {
   return (
     <section className="relative p-2">
       <div className="absolute inset-0 -z-10">
-        <img
+        <Image
           src={
             featured?.poster ||
             "https://images.unsplash.com/photo-1490818387583-1baba5e638af?q=80&w=1600&auto=format&fit=crop"
           }
           alt={featured?.name || "Popular anime banner"}
+          width={100}
+          height={100}
           className="h-[46vh] w-full object-cover brightness-75"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />

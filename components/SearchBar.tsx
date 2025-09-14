@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 type Suggestion = {
   id: string;
@@ -64,11 +65,11 @@ const SearchBar = () => {
       </form>
 
       {showSuggestions && (
-        <div className="absolute left-0 right-0 mt-2 bg-white border rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
+        <div className="absolute left-0 right-0 mt-2 bg-gradient-to-tr from-[#0D1117] to-[#111827] border rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
           {loading ? (
-            <p className="p-3 text-sm text-gray-500">Loading...</p>
+            <p className="p-3 text-sm text-neon">Loading...</p>
           ) : suggestions.length === 0 ? (
-            <p className="p-3 text-sm text-gray-500">No results</p>
+            <p className="p-3 text-sm text-neon">No results</p>
           ) : (
             suggestions.map((anime) => (
               <Link
@@ -78,11 +79,13 @@ const SearchBar = () => {
                   setSuggestions([]);
                   setShowSuggestions(false);
                 }}
-                className="flex items-center gap-3 p-3 hover:bg-gray-100 transition"
+                className="flex items-center gap-3 p-3 hover:bg-[hsl(var(--neon))]/30 transition"
               >
-                <img
+                <Image
                   src={anime.poster}
                   alt={anime.name}
+                  width={100}
+                  height={100}
                   className="w-10 h-14 object-cover rounded"
                 />
                 <span className="text-sm font-medium">{anime.name}</span>
