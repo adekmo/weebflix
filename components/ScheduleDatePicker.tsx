@@ -10,7 +10,7 @@ const ScheduleDatePicker = ({ date, setDate }: Props) => {
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
-        className="border rounded px-2 py-1"
+        className="bg-card text-primary hover:bg-[hsl(var(--neon))] border border-[hsl(var(--neon))]/90 px-2 py-1"
       />
     </div>
   )

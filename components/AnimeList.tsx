@@ -156,7 +156,7 @@ const AnimeList = ({ category, genre, producer, letter, query, type }: Props) =>
                     <HoverCard.Content
                       side="right"
                       sideOffset={10}
-                      className="z-50 bg-white rounded-lg shadow-xl border p-3 animate-in fade-in slide-in-from-left-1"
+                      className="z-50 bg-gradient-to-tr from-[#0D1117] to-[#111827] rounded-lg shadow-xl p-3 animate-in fade-in slide-in-from-left-1"
                     >
                       <AnimeQtip id={anime.id} />
                       <HoverCardArrow className="fill-white" />

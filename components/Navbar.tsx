@@ -62,6 +62,16 @@ const Navbar = () => {
           >
             A-Z List
           </Link>
+          <Link
+            href="/schedule"
+            className={
+              pathname === "/schedule"
+                ? "text-neon font-semibold hover:text-foreground"
+                : "text-primary"
+            }
+          >
+            Schedule
+          </Link>
           
         </nav>
 

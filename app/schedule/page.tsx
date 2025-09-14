@@ -79,10 +79,19 @@ const SchedulePage = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Anime Schedule</h1>
+      <h1 className="text-2xl font-bold text-neon mb-4">Anime Schedule</h1>
 
-      <ScheduleTab tab={tab} setTab={setTab} setDate={setDate} />
-      {tab === "today" && <ScheduleDatePicker date={date} setDate={setDate} />}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+        {/* Tabs */}
+        <ScheduleTab tab={tab} setTab={setTab} setDate={setDate} />
+
+        {/* Date Picker muncul hanya kalau tab = today */}
+        {tab === "today" && (
+          <div className="shrink-0">
+            <ScheduleDatePicker date={date} setDate={setDate} />
+          </div>
+        )}
+      </div>
 
       {loading ? (
         <p>Loading...</p>

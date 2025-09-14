@@ -7,7 +7,7 @@ import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
-import { HoverCardArrow, HoverCardContent, HoverCardPortal, HoverCardTrigger } from "@radix-ui/react-hover-card";
+import { HoverCardArrow } from "@radix-ui/react-hover-card";
 import * as HoverCard from "@radix-ui/react-hover-card";
 import AnimeQtip from './AnimeQtip';
 
@@ -91,12 +91,12 @@ const SpotlightAnime = () => {
                             {s.description}
                           </p>
                           {s.otherInfo.map((info, idx) => (
-                            <Badge key={idx} variant="destructive" className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white backdrop-blur hover:bg-white/20">
+                            <Badge key={idx} variant="destructive" className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white backdrop-blur hover:bg-white/20 mr-1">
                               {info}
                             </Badge>
                           ))}
                         </div>
-                        <div className="absolute left-2 top-2 rounded-md">
+                        <div className="absolute left-2 top-2 rounded-md ">
                           <Badge className={`bg-gradient-to-r from-blue-500 to-cyan-500 text-white`}>
                             {s.episodes.sub} Sub | {s.episodes.dub} Dub
                           </Badge>

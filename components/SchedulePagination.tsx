@@ -13,8 +13,8 @@ const SchedulePagination = ({ page, totalPages, onPageChange }: Props) => {
         disabled={page === 1}
         className={`px-3 py-1 rounded border ${
           page === 1
-            ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-            : "bg-white hover:bg-gray-100"
+            ? "bg-[hsl(var(--neon))] text-[hsl(var(--neon-foreground))] cursor-not-allowed disabled:opacity-50"
+            : "bg-[hsl(var(--neon))] text-[hsl(var(--neon-foreground))] hover:bg-[hsl(var(--neon))]/90 cursor-pointer "
         }`}
       >
         Previous
@@ -27,8 +27,8 @@ const SchedulePagination = ({ page, totalPages, onPageChange }: Props) => {
         disabled={page === totalPages}
         className={`px-3 py-1 rounded border ${
           page === totalPages
-            ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-            : "bg-white hover:bg-gray-100"
+            ? "bg-[hsl(var(--neon))] text-[hsl(var(--neon-foreground))] cursor-not-allowed disabled:opacity-50"
+            : "bg-[hsl(var(--neon))] text-[hsl(var(--neon-foreground))] hover:bg-[hsl(var(--neon))]/90 cursor-pointer"
         }`}
       >
         Next

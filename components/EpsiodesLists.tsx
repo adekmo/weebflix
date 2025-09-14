@@ -53,9 +53,7 @@ const EpsiodesLists = ({ animeId }: { animeId: string }) => {
             href={`/anime/${animeId}/episodes/${ep.number}`}
           >
             <div
-              className="group relative overflow-hidden rounded-lg border bg-gradient-to-tr from-[#0D1117] to-[#111827] 
-                        hover:from-cyan-900/40 hover:to-sky-900/40 
-                        transition-all duration-300 p-4 cursor-pointer aspect-[5/2]"
+              className="group relative overflow-hidden rounded-lg border bg-gradient-to-tr from-[#0D1117] to-[#111827] hover:from-cyan-900/40 hover:to-sky-900/40 transition-all duration-300 p-4 cursor-pointer aspect-[5/2]"
             >
               {/* Episode Info */}
               <h3 className="text-lg font-bold text-white group-hover:text-[hsl(var(--neon))] transition-colors">
