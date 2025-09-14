@@ -3,10 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params;
+
   try {
-    const data = await AnimeApi(`anime/episodes/${params.id}`);
+    const data = await AnimeApi(`anime/episodes/${id}`);
     return NextResponse.json(data || {});
   } catch (error) {
     console.error("Error fetching episodes:", error);

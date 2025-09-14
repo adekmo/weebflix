@@ -1,9 +1,10 @@
 import { AnimeApi } from "@/lib/api";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, {params}: {params: {id: string}}){
+export async function GET(req: NextRequest, {params}: {params: Promise<{id: string}>}){
+    const { id } = await params;
     try {
-        const data = await AnimeApi(`anime/info?id=${params.id}`);
+        const data = await AnimeApi(`anime/info?id=${id}`);
         return NextResponse.json(data.data.anime || {})
     } catch (error) {
         console.error("Error fetching anime detail:", error);
