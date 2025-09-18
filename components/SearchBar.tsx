@@ -53,7 +53,7 @@ const SearchBar = () => {
     setQuery("");
   };
   return (
-    <div className="relative w-full max-w-md">
+    <div className="relative w-full">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
